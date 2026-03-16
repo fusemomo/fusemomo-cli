@@ -1,13 +1,11 @@
 #!/bin/bash
 set -e
 
-# Fusemomo CLI - Installer
-# Usage: curl -sL https://.../install.sh | bash
-
 OWNER="fusemomo"
 REPO="fusemomo-cli"
-BINARY="fusemomo"
-ARCHIVE="fusemomo-cli"   # GoReleaser uses repo name for archive, binary name inside
+ARCHIVE="fusemomo-cli"
+BINARY="fusemomo-cli"
+INSTALL_NAME="fusemomo"
 
 # Detect OS
 OS="$(uname -s | tr '[:upper:]' '[:lower:]')"
@@ -36,27 +34,24 @@ if [ -z "${VERSION}" ]; then
   exit 1
 fi
 
-# GoReleaser strips leading 'v' in archive filenames
 VERSION_STRIPPED="${VERSION#v}"
 
-FORMAT="tar.gz"
+URL="https://github.com/${OWNER}/${REPO}/releases/download/${VERSION}/${ARCHIVE}_${VERSION_STRIPPED}_${OS}_${ARCH}.tar.gz"
 
-URL="https://github.com/${OWNER}/${REPO}/releases/download/${VERSION}/${ARCHIVE}_${VERSION_STRIPPED}_${OS}_${ARCH}.${FORMAT}"
-
-echo "Downloading ${BINARY} ${VERSION} for ${OS}/${ARCH}..."
+echo "Downloading ${INSTALL_NAME} ${VERSION} for ${OS}/${ARCH}..."
 
 TMP_DIR=$(mktemp -d)
-curl -sL "${URL}" -o "${TMP_DIR}/archive.${FORMAT}"
+curl -sL "${URL}" -o "${TMP_DIR}/archive.tar.gz"
 
 cd "${TMP_DIR}"
 tar -xzf "archive.tar.gz"
 
 INSTALL_DIR="/usr/local/bin"
 if [ ! -w "${INSTALL_DIR}" ]; then
-  sudo mv "${BINARY}" "${INSTALL_DIR}/${BINARY}"
+  sudo mv "${BINARY}" "${INSTALL_DIR}/${INSTALL_NAME}"
 else
-  mv "${BINARY}" "${INSTALL_DIR}/${BINARY}"
+  mv "${BINARY}" "${INSTALL_DIR}/${INSTALL_NAME}"
 fi
 
-echo "Successfully installed ${BINARY} ${VERSION} to ${INSTALL_DIR}/${BINARY}"
-${BINARY} version
+echo "Successfully installed ${INSTALL_NAME} ${VERSION} to ${INSTALL_DIR}/${INSTALL_NAME}"
+${INSTALL_NAME} version
