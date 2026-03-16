@@ -1,10 +1,8 @@
-# FuseMomo CLI
+# Fusemomo CLI
 
 [![Build Status](https://github.com/fusemomo/fusemomo-cli/actions/workflows/release.yaml/badge.svg)](https://github.com/fusemomo/fusemomo-cli/actions)
-[![Go Version](https://img.shields.io/github/go-mod/go-version/fusemomo/fusemomo-cli)](https://go.dev/)
-[![License](https://img.shields.io/github/license/fusemomo/fusemomo-cli)](LICENSE)
 
-**FuseMomo CLI** is a command-line interface designed for AI agents to interact with the [FuseMomo](https://fusemomo.com).
+**Fusemomo CLI** is a command-line interface designed for AI agents to interact with the [Fusemomo](https://fusemomo.com).
 
 > [!NOTE]
 > This CLI is optimized for machine-to-machine interaction. It defaults to structured JSON output and provides deterministic exit codes for use in automated pipelines.
