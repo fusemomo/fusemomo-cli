@@ -1,0 +1,1 @@
+{"recommendation_id":"rec_01ABCD","entity_id":"ent_01J9KP2QR5VTFXYZ","intent":"payment_recovery","recommended_action_type":"send_email","confidence":0.87,"scoring_breakdown":{"send_email":0.87,"sms":0.3},"reason":"Highest success rate over the lookback window","sample_size":12,"lookback_days":90}
